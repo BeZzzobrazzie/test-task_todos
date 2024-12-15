@@ -8,17 +8,17 @@ import classes from "./style.module.css";
 import { ToggleColorScheme } from "src/03_features/toggle-color-scheme";
 
 export function MainPage() {
-  const { toDos, setToDos, input, setInput, addToDo, removeCompleted } =
+  const { toDosStore, addToDo, removeCompleted, toggleChecked, changeInput } =
     useToDos();
 
   const [activeFilterOption, setActiveFilterOption] = useState(0);
   const filterOptions = ["All", "Active", "Completed"];
 
-  const filteredToDoIds = Object.keys(toDos).filter((id) => {
+  const filteredToDoIds = Object.keys(toDosStore.toDos).filter((id) => {
     if (filterOptions[activeFilterOption] === "Active")
-      return !toDos[id].checked;
+      return !toDosStore.toDos[id].checked;
     if (filterOptions[activeFilterOption] === "Completed")
-      return toDos[id].checked;
+      return toDosStore.toDos[id].checked;
     return true;
   });
 
@@ -26,9 +26,9 @@ export function MainPage() {
     <ToDoItem
       key={id}
       id={id}
-      checked={toDos[id].checked}
-      content={toDos[id].content}
-      setToDos={setToDos}
+      checked={toDosStore.toDos[id].checked}
+      content={toDosStore.toDos[id].content}
+      toggleChecked={toggleChecked}
     />
   ));
 
@@ -51,11 +51,11 @@ export function MainPage() {
                 <TextInput
                   leftSection={<IconChevronDown />}
                   placeholder="What needs to be done?"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  value={toDosStore.input}
+                  onChange={(e) => changeInput(e.target.value)}
                   size="lg"
                   className={
-                    input === ""
+                    toDosStore.input === ""
                       ? classes["input_empty"]
                       : classes["input_full"]
                   }
