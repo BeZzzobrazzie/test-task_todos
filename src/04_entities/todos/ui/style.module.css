@@ -1,0 +1,12 @@
+.list-item {
+  list-style-type: none;
+  display: block;
+}
+.checkbox-card {
+  padding: var(--mantine-spacing-sm);
+  border-top: 0;
+}
+.text_checked {
+  text-decoration: line-through;
+  opacity: 0.5;
+}

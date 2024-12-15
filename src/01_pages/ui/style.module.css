@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.title {
+  text-align: center;
+}
+
+.todo {
+  min-width: 450px;
+}
+.rungs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rungs::after,
+.rungs::before {
+  content: "";
+  display: block;
+  height: 6px;
+  width: 98%;
+  border: calc(0.0625rem * var(--mantine-scale)) solid
+    var(--mantine-color-default-border);
+  border-top: 0;
+}
+.rungs::before {
+  width: 99%;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+}
+
+.input_empty {
+  font-style: italic;
+}
+.input_full {
+}
